@@ -1,0 +1,6 @@
+构建一个将后缀算术表达式翻译成等价的前缀算术表达式的语法制导翻译方案。
+生成式:
+expr -> expr expr op | digit
+
+翻译方案:
+expr -> {print(op)} expr expr op | digit {print(digit)}

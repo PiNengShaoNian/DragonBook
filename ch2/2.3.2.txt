@@ -1,0 +1,17 @@
+构建一个语法制导翻译方案，该方案将算术表达式从后缀表示方式翻译成中缀表达方式
+给出输入95-2*和952*-的注释分析树。
+
+产生式:
+expr -> expr expr +
+      | expr expr -
+      | expr expr *
+      | expr expr /
+      | digit
+
+翻译方案:
+expr -> expr {print("+")} expr +
+      | expr {print("-")} expr -
+      | {print("(")} expr {print(")*(")} expr {print(")")} *
+      | {print("(")} expr {print(")/(")} expr {print(")")} /
+      | digit {print(digit)}
+

@@ -1,0 +1,19 @@
+构建一个语法制导翻译方案，该方案把算数表达式从后缀表示方式翻译成运算符在运算分量之前的
+前缀表示方式。例如-xy是表达式x-y的前缀表示法。给出输入9-5+2和9-5*2的注释分析树。
+产生式：
+expr -> expr + term
+      | expr - term
+      | term
+term -> term * factor
+      | term / factor
+      | factor
+factor -> digit | (expr)
+
+翻译方案：
+expr -> {print("+")} expr + term
+      | {print("-")} expr - term
+term -> {print("*")} term * factor
+      | {print("/")} term / factor
+      | factor
+factor -> digit {print(digit)}
+        | (expr)
