@@ -1,0 +1,24 @@
+Indicate which of the following terms:
+
+a. imperative b. declarative c. von Neumann d. object-oriented e. functional f. third-generation g. fourth-generation h. scripting
+
+apply to which of the following languages:
+
+C
+C++
+Cobol
+Fortran
+Java
+Lisp
+ML
+Perl
+Python
+VB.
+Answer
+imperative: C, C++
+
+object-oriented: C++, Java
+
+functional: ML
+
+scripting: Perl, Python
