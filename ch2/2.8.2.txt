@@ -1,0 +1,11 @@
+Replace
+
+emit("ifFalse " + E.rvalue().toString() + " goto " + after);
+
+with
+
+emit("ifEqual " + E.rvalue().toString() + " 0 goto " + after);
+
+or
+
+emit("ifEqualZero " + E.rvalue().toString() + " goto " + after);
