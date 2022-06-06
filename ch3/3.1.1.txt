@@ -1,0 +1,11 @@
+根据3.1.2节的讨论中，将下面C++程序
+float limitedSquare(x) {
+    float x;
+    return (x <= -10.0 || x >= 10.0) ? 100 : x * x;
+}
+划分为正确的语素序列。那些词素应该有相关联的词法值？应该具有什么样的值？
+
+<float> <id,limitedSquare> <(> <id,x> <)> <{> 
+    <float> <id,x>
+    <return> <(> <id,x> <op,"<="> <num,-10.0> <op,"||"> <id,x> <op,">="> <op,"?"> <num,100> <op,":"> <id,x> <op,"*"> <id,x> <;>
+<}>

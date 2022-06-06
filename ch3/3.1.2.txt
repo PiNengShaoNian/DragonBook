@@ -1,0 +1,10 @@
+请指出如何把下面的HTML文档划分为适当的语素序列。那些词素应该具有关联的语法值？应该具有怎样的值？
+Here is a photo of <b>my house</b>;
+<p><img src="house.gif"/><br/>
+see <a href="morePix.html">More Picture</a> if you
+liked that one.</p>
+
+<text,"Here is a photo of"> <nodestart,b><text, "my house"><nodeend,b>
+<nodestart,p><selfendnode,img><selfendnode,br>
+<text,"see"><nodestart,a><text,"More Picture"><nodeend,a>
+<text, "if you liked that one."> <nodeend, p>
