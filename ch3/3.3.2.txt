@@ -1,0 +1,13 @@
+Describe the languages denoted by the following regular expressions:
+
+1. a(a|b)*a
+2. ((ε|a)b*)*
+3. (a|b)*a(a|b)(a|b)
+4. a*ba*ba*ba*
+!!5.  (aa|bb)*((ab|ba)(aa|bb)*(ab|ba)(aa|bb)*)*
+
+1. 两端是a，中间只包含0个或多个a，或只包含零个或多个b的字符串。
+2. 只包含字符a和b的字符串
+3. 只包含字符a和b的字符串,而且倒数第三个字符是a
+3. 只包含字符a和b的字符串，而且其中之包含3个字母b
+4. 只包含字符a和b的字符串,其中字母a和字母b的数量都是偶数。
