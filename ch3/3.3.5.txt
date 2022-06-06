@@ -1,0 +1,13 @@
+！Write regular definitions for the following languages:
+
+1. All strings of lowercase letters that contain the five vowels in order.
+other -> [bcdfghjklmnpqrstvwxyz]
+want -> other* a (other|a)* e (other|e)* i (other|i)* o (other|o)* u (other|u)*
+
+2. All strings of lowercase letters in which the letters are in ascending lexicographic order.
+a* b* ... z*
+
+3. Comments, consisting of a string surrounded by /* and */, without an intervening */, unless it is inside double-quotes (")
+\/\*([^*"]*|".*"|\*+[^/])*\*\/
+
+

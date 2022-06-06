@@ -1,0 +1,12 @@
+为下列的字符集合写出对于的字符类。
+1. 英文字母的前10个字母(从a~j),包括大写和小写。
+[A-Ja-j]
+
+2. 所有小写的辅音字母的集合
+[bcdfghjklmnpqrstvwxzy]
+
+3. 十六进制中的“数位”(对于大于9的数位，自己觉得大写或小写)。
+[0-9a-f]
+
+4. The characters that can appear at the end of alegitimate English sentence (e.g. , exclamation point) .
+[.?!]
