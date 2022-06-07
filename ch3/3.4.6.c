@@ -15,5 +15,6 @@ int kmp(char *str, char* sub) {
         }
         ++i;
     }
+    free(f);
     return -1;
 }
