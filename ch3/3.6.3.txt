@@ -1,0 +1,11 @@
+For the NFA of Fig. 3.29, indicate all the paths labeled aabb. Does the NFA accept aabb?
+
+Answer
+(0) -a-> (1) -a-> (2) -b-> (2) -b-> ((3))
+(0) -a-> (0) -a-> (0) -b-> (0) -b-> (0)
+(0) -a-> (0) -a-> (1) -b-> (1) -b-> (1)
+(0) -a-> (1) -a-> (1) -b-> (1) -b-> (1)
+(0) -a-> (1) -a-> (2) -b-> (2) -b-> (2)
+(0) -a-> (1) -a-> (2) -b-> (2) -ε-> (0) -b-> (0)
+(0) -a-> (1) -a-> (2) -ε-> (0) -b-> (0) -b-> (0)
+This NFA accepts "aabb"
