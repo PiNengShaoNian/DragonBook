@@ -1,0 +1,23 @@
+1. NFA
+                        i              f
+        ---------- 1 ---------> 2 ------------> 3(accpted)
+        |
+     ε  |
+0 ------>                       <---- ^
+        |                       |     | letter
+     ε  |                       👇    | 
+        -----------4---------->  5 ----
+                       letter
+
+NOTE: this NFA has potential conflict, we can decide the matched lexeme by 1. take the longest 2. take the first listed.
+
+
+2.DFA
+                  
+                         i              f
+     start----->  A  ----------> B  -----------> C
+                  |              |             |
+                  |              | not f       |  letter
+                  |              👇            |
+                  ------------> D <-------------
+                     not i
