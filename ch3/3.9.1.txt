@@ -1,0 +1,3 @@
+ndoe n        nullable(n)        firstpos(n)
+n = c_1?         true             firstpos(c_1)
+n = c_1+         nullable(c_1)    firstpos(c_1)
