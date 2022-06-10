@@ -1,0 +1,12 @@
+Use the braces described in Exercise 4.2.4 to simplify the following grammar for statement blocks and conditional statements:
+
+stmt -> if expr then stmt else stmt
+      | if stmt them stmt
+      | begin stmtList end
+stmtList -> stmt; stmtList | stmt
+
+
+Answer
+stmt -> if expr then stmt [else stmt]
+      | begin stmtList end
+stmtList -> stmt [; stmtList]
