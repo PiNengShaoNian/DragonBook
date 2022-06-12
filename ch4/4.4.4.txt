@@ -1,0 +1,21 @@
+计算练习 4.2.2 中各个文法的 FIRST 和 FOLLOW 集合。
+
+1. S -> 0 S 1 | 0 1
+
+first(S) = [0]
+follow(S) = [1, $]
+
+2. S -> + S S | * S S | a
+
+first(S) = [+, *, a]
+follow(S) = [+, *, a, $]
+
+3. S -> S (S) S | ε
+
+first(S) = [(, ε]
+followS(S) = [), $]
+
+4. S -> S + S | S S | (S) | S * | a
+
+first(S) = [(, a]
+follow(S) = [+, (, ), a, *, $]

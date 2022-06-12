@@ -1,0 +1,6 @@
+计算练习 4.2.1 的文法的 FIRST 和 FOLLOW 集合。
+
+S -> S S +  | S S * | a
+
+first(S) = [a]
+follow(S) = [a, +, *]
