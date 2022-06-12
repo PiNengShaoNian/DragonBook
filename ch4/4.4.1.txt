@@ -1,0 +1,97 @@
+为下面的每个文法设计一个预测分析器，并给出预测分析表。你可能先要对文法进行提取左公因子或者消除左递归的操作。
+
+练习 4.2.2 中 1 - 7 中的文法。
+
+1. S -> 0 S 1 | 0 1
+
+step1. 提取左公因子
+
+ S -> 0 A
+ A -> S 1 | 1
+
+step2. 消除左递归
+
+ S -> 0 A
+ A -> 0 A 1 | 1
+
+ 非终结符号	              输入符号
+                 0	           1	         $
+S	          S -> 0 A		
+A	          A -> 0 A 1  	 A -> 1	
+
+2. S -> + S S | * S S | a
+step1. 无左公因子
+
+step2. 无左递归
+
+step3. 预测分析表
+
+非终结符号	             输入符号
+               +	        *	         a     	$
+S	       S -> + S S	S -> * S S	  S -> a	
+
+
+3. S -> S (S) S | ε
+step1. 无左公因子
+
+step2. 消除左递归
+S -> A
+A -> (S) S A | ε
+
+step3. 预测分析表
+非终结符号	               输入符号
+               (	               )	       $
+S	          S -> A	        S -> A	     S -> A
+
+A	          A -> (S) S A
+              A -> ε	        A -> ε	     A -> ε
+
+4. S -> S + S | S S | (S) | S * | a
+step1. 提取左公因子
+S -> S A | (S) | a
+A -> + S | S | *
+
+进一步提取终结符。
+ S -> SA | T
+ A -> +S | S | *
+ T -> (S) | a  
+
+ step2. 消除左递归
+ //initial status
+ S -> SA | T
+ A -> +S | S | *
+ T -> (S) | a  
+
+ // i = 1
+ S -> TB
+ B -> AB | ε
+ A -> +S | S | *
+ T -> (S) | a
+
+ // i = 2, j = 1
+ S -> TB
+ B -> AB | ε
+ A -> +S | TB | *
+ T -> (S) | a
+
+// i = 3, j = 1 ~ 2
+nothing changed
+
+step3. first && follow
+first(T) = [(, a]
+first(A) = [+, *] + first(T) = [+, *, (, a]
+first(B) = [ε] + first(A) = [ε, +, *, (, a]
+first(S) = first[T] = [(, a]
+
+follow(T) = [$, +, *, (, a]
+follow(S) = [$, )]
+follow(A) = first(B) + follow(b) = [$, +, *, (, a, )]
+follow(B) = follow(S) = [$, )]
+
+step4. 预测分析表
+非终结符号	                    输入符号
+                     (	        )	      +     	*	       a	     $
+S                  S -> TB                                   S -> TB
+B                  B -> AB            B -> AB     B -> AB
+A                  A -> TB            A -> +S     A -> *     A -> TB
+T                  A -> (S)                                  T -> a
