@@ -1,0 +1,26 @@
+下面是一个只包含符号 a 和 b 的正则表达式文法。它使用 + 替代表示并运算的字符 | ，以避免和文法中作为元符号使用的竖线相混淆：
+
+rexpr -> rexpr + rterm | rterm
+rterm -> rterm rfactor | rfactor
+rfactor -> rfactor * | rprimary
+rprimary -> a | b
+1. 对这个文法提取左公因子。
+2. 提取左公因子的变换能使这个文法适用于自顶向下的语法分析技术吗？
+3. 提取左公因子之后，从原文法中消除左递归。
+4. 得到的文法适用于自顶向下的语法分析吗？
+
+解答：
+1. 无左公因子
+
+2. 提取左公因子的变换能使这个文法适用于自顶向下的语法分析技术吗？
+
+3.
+rexpr -> rterm A 
+A  ->  + rterm  A | ε
+rterm -> rfactor B
+B -> rfactor B | ε
+rfactor -> rprimary C
+C -> * C | ε
+rprimary -> a | b
+
+4. 适合
