@@ -1,0 +1,22 @@
+	产生式	          语法规则
+1)	L -> En	        L.val = E.val
+
+2)	E -> TE'	    E'.inh = T.val
+                    E.val = E'.syn
+
+3)	E' -> +TE_1'	E_1'.inh = E'.inh + T.val
+                    E'.syn = E_1'.syn
+
+4)	E' -> ε	        E'.syn = E'.inh
+
+5)	T -> FT'	    T'.inh = F.val
+                    T.val = T'.syn
+
+6)	T' -> *FT_1'	T_1'.inh = T'.inh * F.val
+                    T'.syn = T_1'.syn
+
+7)	T' -> ε	        T'.syn = T'.inh
+
+8)	F -> (E)	    F.val = E.val
+
+9)	F -> digit	    F.val = digit.lexval
