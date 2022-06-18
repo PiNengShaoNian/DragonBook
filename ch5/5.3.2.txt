@@ -1,0 +1,41 @@
+给出一个 SDD，将一个带有 + 和 * 的中缀表达式翻译成没有冗余括号的表达式。比如因为两个运算符都是左结合的，并且 * 的优先级高于 +，所以 ((a*(b+c))*(d)) 可翻译为 a*(b+c)*d
+
+解答
+几个属性设置：
+
+wrapped: 表达式最外层是否有括号。
+precedence: 令 +，*，() 和单 digit 的优先级分别为 0，1，2，3。 如果表达式最外层有括号，则为去掉括号后最后被计算的运算符的优先级，否则为表达式最后被计算的运算符的优先级。
+expr: 表达式。
+cleanExpr: 去除了冗余括号的表达式。
+产生式	语法规则
+1)	L -> En	        L.cleanExpr = E.wrapped ? E.cleanExpr : E.expr
+
+2)	E -> E_1 + T	E.wrapped = false
+                    E.precedence = 0
+                    E.expr = E_1.expr || "+" || T.expr
+                    E.cleanExpr = (E_1.wrapped ? E_1.cleanExpr : E_1.expr) || "+" || (T.wrapped ? T.cleanExpr : T.expr)
+
+3)	E -> T	        E.wrapped = T.wrapped
+                    E.precedence = T.precedence
+                    E.expr = T.expr
+                    E.cleanExpr = T.cleanExpr
+
+4)	T -> T_1 * F	T.wrapped = false
+                    T.precedence = 1
+                    T.expr = T_1.expr || "*" || F.expr
+                    T.cleanExpr = (T_1.wrapped && T_1.precedence >= 1 ? T_1.cleanExpr : T_1.expr) || * || (F.wrapped && F.precedence >= 1 ? F.cleanExpr : F.expr)
+
+5)	T -> F	        T.wrapped = F.wrapped
+                    T.precedence = F.precedence
+                    T.expr = F.expr
+                    T.cleanExpr = F.cleanExpr
+
+6)	F -> (E)	    F.wrapped = true
+                    F.precedence = E.precedence
+                    F.expr = "(" || E.expr || ")"
+                    F.cleanExpr = E.expr
+
+7)	F -> digit	    F.wrapped = false
+                    F.precedence = 3
+                    F.expr = digit
+                    F.cleanExpr = digit

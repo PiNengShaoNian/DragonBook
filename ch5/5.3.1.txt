@@ -1,0 +1,15 @@
+下面是涉及运算符 + 和整数或浮点运算分量的表达式的文法。区分浮点数的方法是看它有无小数点。
+
+E -> E + T | T
+T -> num.num | num
+给出一个 SDD 来确定每个项 T 和表达式 E 的类型
+扩展这个得到的 SDD，使得它可以把表达式转换成为后缀表达式。使用一个单目运算符 intToFloat 把一个整数转换为相等的浮点数。
+
+产生式	               语法规则
+1)	E -> E_1 + T	E.type = E_1.type === float || T.type === float ? float : int
+
+2)	E -> T	        E.type = T.type
+
+3)	T -> num.num	T.type = float
+
+4)	T -> num	    T.type = int
