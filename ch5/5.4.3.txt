@@ -1,0 +1,23 @@
+下面的 SDT 计算了一个由 0 和 1 组成的串的值。它把输入的符号串当做正二进制数来解释。
+
+B -> B_1 0 {B.val = 2 * B_1.val}
+   | B_1 1 {B.val = 2 * B_1.val + 1}
+   | 1 {B.val = 1}
+改写这个 SDT，使得基础文法不再是左递归的，但仍然可以计算出整个输入串的相同的 B.val 的值。
+
+解答
+提取左公因子
+
+B -> B_1 digit {B.val = 2 * B_1.val + digit.val}
+   | 1 {B.val = 1}
+digit -> 0 {digit.val = 0} 
+       | 1 {digit.val = 1}
+
+在形如 A = A a | b 的左递归产生式中， a 为 digit {B.val = 2 * B_1.val + digit.val}， b 为 1
+
+消除左递归后得
+B -> 1 {A.i = 1} A
+A -> digit {A_1.i = 2 * A.i + digit.val} A_1 {A.val = A_1.val}
+   | ε {A.val = A.i}
+digit -> 0 {digit.val = 0} 
+       | 1 {digit.val = 1}

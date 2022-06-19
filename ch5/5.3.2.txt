@@ -7,7 +7,7 @@ wrapped: 表达式最外层是否有括号。
 precedence: 令 +，*，() 和单 digit 的优先级分别为 0，1，2，3。 如果表达式最外层有括号，则为去掉括号后最后被计算的运算符的优先级，否则为表达式最后被计算的运算符的优先级。
 expr: 表达式。
 cleanExpr: 去除了冗余括号的表达式。
-产生式	语法规则
+产生式	                  语法规则
 1)	L -> En	        L.cleanExpr = E.wrapped ? E.cleanExpr : E.expr
 
 2)	E -> E_1 + T	E.wrapped = false

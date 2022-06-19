@@ -1,0 +1,62 @@
+改写下面的 SDT:
+
+A -> A {a} B | A B {b} | 0
+B -> B {c} A | B A {d} | 1
+使得基础文法变成非左递归的。
+// step1: i = 1
+A -> 0 C | C
+C -> {a} B C | B {b} C | ε
+B -> B {c} A | B A {d} | 1
+
+// step1: i = 2, j = 1
+A -> 0 C | C
+C -> {a} B C | B {b} C | ε
+B -> 1 D | D
+D -> {c} A D | A {d} | ε
+
+
+
+// step3: i = 3, j = 1
+nothing change 
+A -> 0 C | C
+C -> {a} B C | B {b} C | ε
+B -> 1 D | D
+D -> {c} A D | A {d} | ε
+
+// step4: i = 3, j = 2
+A -> 0 C | C
+C -> {a} 1 D C | {a} D C | 1 D {b} C | D {b} C |ε
+B -> 1 D | D
+D -> {c} A D | A {d} | ε
+
+// step5: i = 4, j = 1
+A -> 0 C | C
+C -> {a} 1 D C | {a} D C | 1 D {b} C | D {b} C |ε
+B -> 1 D | D
+D -> {c} 0 C D | {c} C D | 0 C {d} | C {d} | ε
+
+// step6: i = 4, j = 2
+nothing change
+A -> 0 C | C
+C -> {a} 1 D C | {a} D C | 1 D {b} C | D {b} C |ε
+B -> 1 D | D
+D -> {c} 0 C D | {c} C D | 0 C {d} | C {d} | ε
+
+// step7: i = 4, j = 3
+A -> 0 C | C
+C -> {a} 1 D C | {a} D C | 1 D {b} C | D {b} C | ε
+B -> 1 D | D
+D -> {c} 0 C D       | 
+     {c} {a} 1 D C D |
+     {c} {a} D C D   |
+     {c} 1 D {b} C D |
+     {c} D {b} C D   |
+     {c} D           |
+     0 C {d}         | 
+     {a} 1 D C {d}   | 
+     {a} D C {d}     | 
+     1 D {b} C {d}   | 
+     D {b} C {d}     | 
+     ε {d}           | 
+     ε
+//最后消除4的立即左递归不写了
