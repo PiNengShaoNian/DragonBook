@@ -1,0 +1,31 @@
+修改图 5.25 中的 SDD，使它包含上标，用方框之间的运算符 sup 表示。如果方框 B_2 是方框 B_1 的一个上标，那么将 B_2 的基线放在 B_1 的基线上方，两条基线的距离是 0.6 乘以 B_1 的大小。把新的产生式和规则加入到图 5.26 的 SDT 中去。
+
+1) S -> B               B.ps = 10
+                        B.wd = 
+                        
+2) S -> B_1 B_2         B_1.ps = B.ps
+                        B_2.ps = B.ps
+                        B.wd = B_1.wd + B_2.wd
+                        B.ht = max(B_1.ht, B_2.ht)
+                        B.dp = max(B_1.dp, B_2.dp)
+
+3) B -> B_1 sub B_2     B_1.ps = B.ps
+                        B_2.ps = 0.7 * B.ps
+                        B.wd = B_1.wd + B_2.wd
+                        B.ht = max(B_1.ht, B_2.ht - 0.25 * B.ps)
+                        B.dp = max(B_1.dp, B_2.dp + 0.25 * B.ps)
+
+4) B -> B_1 sup B_2     B_1.ps = B.ps
+                        B_2.ps = 0.6 * B.ps
+                        B.wd = B_1.wd + B_2.wd
+                        B.ht = max(B_1.ht, B_2.ht + 0.6 * B.ps)
+                        B.dp = max(B_1.dp, B_2.dp - 0.6 * B.ps)    
+
+5) B -> ( B_1 )         B_1.ps = B.ps
+                        B.wd = B_1.wd
+                        B.ht = B_1.ht
+                        B.dp = B_1.dp
+
+6) B -> text            B.wd = getWd(B.ps, text.lexval)
+                        B.ht = getHt(B.ps, text.lexval)
+                        B.dp = getDp(B.ps, text.lexval)

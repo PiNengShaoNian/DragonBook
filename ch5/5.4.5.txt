@@ -1,0 +1,13 @@
+按照例 5.19 的方法，把在练习 5.4.4 中得到的各个 SDD 转换成一个 SDT。
+
+1. S -> if ( C ) S_1 else S_2
+
+ S -> if (     {new L_1; C.false = L_1}   
+      C )      {S_1.next = S.next}
+      S_1 else
+      S_2      {S.code = C.code || S_1.code || label || L_1 || S_2.code}
+
+2. S -> do S_1 while ( C )
+S -> do           {new L_1} 
+     S_1 while (  {C.true = L_1}
+     C )          {S.code = label || L_1 || S_1.code || C.code}
