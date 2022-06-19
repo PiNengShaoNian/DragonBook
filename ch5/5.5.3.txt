@@ -1,0 +1,31 @@
+按照 5.5.3 节的风格，将练习 5.4.4 中得到的每个 SDD 和一个 LL 语法分析器一起实现。它们应该边扫描输入边生成代码。
+
+
+
+1. S -> if ( C ) S_1 else S_2
+
+ S -> if (     {new L_1; C.false = L_1}   
+      C )      {S_1.next = S.next}
+      S_1 else
+      S_2      {S.code = C.code || S_1.code || label || L_1 || S_2.code}
+
+
+   top
+    |
+    👇
+ next=x
+
+
+  top
+   |
+  👇
+ if                (            Action                           C                    S1              else         Action                         S2
+                                snext = x                       false=?              next=?                          al1=?                        next=?
+                                L1 = new()                      true=?                                         
+                                stack[top-1].false = snext                                                         print("label", al1)
+                                stack[top-1].true  = L1           
+                                stack[top-4].al1 = L1
+                                stack[top-5].next = snext
+                                stack[top-2].next = snext                                
+                                
+                                                              

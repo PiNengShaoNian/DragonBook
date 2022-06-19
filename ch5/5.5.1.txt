@@ -1,0 +1,25 @@
+按照 5.5.1 节的风格，将练习 5.4.4 中得到的每个 SDD 实现为递归下降的语法分析器。
+
+
+1. S -> if ( C ) S_1 else S_2
+L_1 = new()
+C.flase = L_1
+S_1.next = S.next
+S.code = C.code || S_1.code || label || L_1 || S_2.code
+
+string S(label next) {
+    string S1code, S2Code, Ccode;
+    label L1;
+    if(当前输入 == 词法单元if) {
+        读取输入;
+        检查下一个符号是否为'('，并读取输入;
+        L1 = new();
+        Ccode = C(L1);
+        检查')'是下一个输入符号,并读取输入;
+        S1code = S(next);
+        检查'else'是下一个此法单元，并读取输入;
+        S2Code = S(next);
+        return (Ccode || Scode || "label" || L_1 || S2Code);
+    }
+    else // 其他词法单元
+}
