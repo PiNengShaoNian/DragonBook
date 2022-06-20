@@ -1,0 +1,25 @@
+使用图 6-22 的翻译方案来翻译下列赋值语句：
+
+1. x = a[i] + b[j]
+
+三地址代码
+
+t_1 = i * awidth
+t_2 = a[t_1]
+t_3 = j * bwidth
+t_4 = b[t_3]
+t_5 = t_2 + t_4
+x = t_5
+
+
+2. x = a[i][j] + b[i][j]
+t_1 = i * ai_width
+t_2 = j * aj_width
+t_3 = t_1 + t_2
+t_4 = a[t_3]
+t_5 = i * bi_width
+t_6 = j * bj_width
+t_7 = t_5 + t_6
+t_8 = b[t_7]
+t_9 = t_4 + t_8
+x = t_9

@@ -1,0 +1,13 @@
+向图 6-19 的翻译方案中加入对应于下列产生式的规则：
+
+E -> E1 * E2
+E -> +E1
+
+
+产生式           语义规则
+E -> E1 * E2  { E.addr = new Temp();
+                E.code = E1.code || E2.code || 
+                gen(E.addr '=' E1.addr '*' E2.addr); }
+
+     | +E1    { E.addr = E1.addr;
+                E.code = E1.code; }

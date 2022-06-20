@@ -1,0 +1,8 @@
+使用图 6-20 的增量式翻译方案重复练习 6.4.1
+
+
+产生式             语义规则
+E -> E1 * E2  { E.addr = new Temp(); 
+                gen(E.addr '=' E1.addr '*' E2.addr); }
+
+     | +E1    { E.addr = E1.addr; }
