@@ -1,0 +1,5 @@
+1. E3.false = i1
+2. S2.next = i7
+3. E4.false = i7
+4. S1.next = i3
+5. E2.true = i3

@@ -1,0 +1,10 @@
+使用图 6-43 中的翻译方案翻译下列表达式。给出每个子表达式的 truelist 和 falselist。你可以假设第一条被生成的指令的地址是 100.
+
+1. a==b && (c==d || e==f)
+
+100: if a==b goto ?
+101: goto ?
+102: if c==d goto ?
+103: ifFalse c==f goto ?
+104: 
+     
