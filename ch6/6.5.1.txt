@@ -1,0 +1,22 @@
+假定图 6-26 中的函数 widen 可以处理图 6-25a 的层次结构中的所有类型，翻译下列表达式。假定 c 和 d 是字符类型，s 和 t 是短整型， i 和 j 为整型， x 是浮点型。
+
+1. x = s + c
+t1 = (int) s
+t2 = (int) c
+t3 = t1 + t2
+x = (float) t3
+
+2. i = s + c
+t1 = (int) s
+t2 = (int) c
+i = t1 + t2
+
+3. x = (s + c) * (t + d)
+t1 = (int) s
+t2 = (int) c
+t3 = t1 + t2
+t4 = (int) t
+t5 = (int) d
+t6 = t4 + t5
+t7 = t3 + 56
+x = (float) t7
