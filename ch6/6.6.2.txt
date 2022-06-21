@@ -1,0 +1,9 @@
+现代计算机试图在同一个时刻执行多条指令，其中包括各种分支指令。因此，当计算机投机性地预先执行某个分支，但实际控制流却进入另一个分支时，付出的代价是很大的。因此我们希望尽可能地减少分支数量。请注意，在图 6-35c 中 while 循环语句的实现中，每个迭代有两个分支：一个是从条件 B 进入到循环体中，另一个分支跳转回 B 的代码。基于尽量减少分支的考虑，我们通常更倾向于将 while(B) S 当作 if(B) {repeat S until !(B)} 来实现。给出这种翻译方法的代码布局，并修改图 6-36 中 while 循环语句的规则。
+
+
+Production                          Syntax Rule
+S -> if(B) {                        B.true = newlabel()
+    repeat S1                       B.false = S.next
+    until !(B)                      S1.next = newlabel()
+}                                   S.code = B.code || label(B.true) || S1.code
+                                             || label(S1.next) || B.code

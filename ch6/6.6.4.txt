@@ -1,0 +1,25 @@
+使用 6.6.5 节中介绍的避免 goto 语句的翻译方案，翻译下列表达式：
+
+1. if (a==b && c==d || e==f) x == 1
+
+ifFalse a == b goto L3
+if c == d goto L3 L2
+L3: ifFalse e == f goto L1
+L2: x == 1
+L1:
+
+2. if (a==b || c==d || e==f) x == 1
+
+if a==b goto L2
+if c==d goto L2
+ifFalse e==f goto L1
+L2: x == 1
+L1:
+
+3. if (a==b || c==d && e==f) x == 1
+
+if a==b goto L2
+ifFalse c==d goto L1
+ifFalse e==f goto L1
+L2: x==1
+L1: 
