@@ -1,0 +1,17 @@
+The C function f is defined by:
+
+int f(int x, *py, **ppz) {
+    **ppz += 1;
+    *py += 2;
+    x += 3;
+    return x+y+z;
+}
+Variable a is a pointer to b; variable b is a pointer to c, and c is an integer currently with value 4. If we call f(c, b, a) , what is returned?
+
+mind that c is passed by value, so the process is:
+
+sentence        x in f()   x out of f()  *py    **ppz
+            
+**ppz += 1;     4          5             5      5
+*py += 2;       4          7             7      7
+x += 3;         7          7             7      7
