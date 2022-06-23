@@ -1,0 +1,3 @@
+What happens to reference counts when the pointer from A to D in Fig. 7.20 is deleted?
+
+D,G,F会被标记为不可达(引用计数为0)

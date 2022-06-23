@@ -1,0 +1,10 @@
+What happens to the reference counts of the objects in Fig. 7.19 if:
+
+1. The pointer from A to B is deleted.
+B 和 D会被标记为不可达(引用计数为0)
+
+2. The pointer from X to A is deleted.
+A,B,D会被标记为不可达(引用计数为0)
+
+3. The node C is deleted.
+F会被标记为为不可达(引用计数为0)
