@@ -1,0 +1,46 @@
+The Baker mark-and-sweep algorithm moves objects among four lists: Free, Unreached, Unscanned, and Scanned. For each of the object networks of Exercise 7.6.1, indicate for each object the sequence of lists on which it finds itself from just before garbage collection begins until just after it finishes.
+
+Answer
+1. Fig. 7.19 with the pointer A to B deleted.
+lin1:      Free = [] // assume it is empty
+           Unreached = [A, B, C, D, E, F, G, H, I]
+           Unscanned = []
+           Scanned = []
+     
+lin2:      Unscanned = [A]
+           Unreached = [B, C, D, E, F, G, H, I]
+
+line3~7:
+    loop1: Scanned = [A]
+           Unscanned=[C]
+           Unreached = [B, D, E, F, G, H, I]
+
+    loop2: Scanned = [A, C]
+           Unscanned = [F]
+           Unreached = [B, D, E, G, H, I]
+    
+    loop3: Scanned = [A, C, F]
+           Unscanned = [H]
+           Unreached = [B, D, E, G, I]
+    
+    loop4: Scanned = [A, C, F, H]
+           Unscanned = [I]
+           Unreached = [B, D, E, G]
+
+    loop4: Scanned = [A, C, F, H, I]
+           Unscanned = [G]
+           Unreached = [B, D, E]
+
+    loop5: Scanned = [A, C, F, H, I, G]
+           Unscanned = [E]
+           Unreached = [B, D]
+
+    loop7: Scanned = [A, C, F, H, I, G, E]
+           Unscanned = []
+           Unreached = [B, D]
+
+line8:     Free = [B, D]
+
+line9:     Unreached = [A, C, F, H, I, G, E]
+           
+           

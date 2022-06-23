@@ -1,0 +1,28 @@
+Show the steps of a mark-and-sweep garbage collector on
+
+1. Fig. 7.19 with the pointer A to B deleted.
+Answer
+标记阶段:
+除B 和 D外其他节点全都会被标记为可达
+清除阶段:
+B和D被加入Free列表，其他节点会被标记为未被访问状态
+
+
+
+2. Fig. 7.19 with the pointer A to C deleted.
+标记阶段:
+所有节点都被标记为可达
+清除阶段:
+所有节点都被标记为未被访问状态
+
+3. Fig. 7.20 with the pointer A to D deleted.
+标记阶段:
+除D,G,F外其他全被标记为可达
+清除阶段:
+D,G,F被加入Free列表，其他节点会被标记为未被访问状态
+
+4. Fig. 7.20 with the object B deleted.
+标记阶段:
+除C外其他全被标记为可达
+清除阶段:
+C被加入Free列表，其他节点会被标记为未被访问状态
