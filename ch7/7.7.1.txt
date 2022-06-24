@@ -1,0 +1,78 @@
+Suppose that the network of objects from Fig.7.20 is managed by an incremental algorithm that uses the four lists Unreached, Unscanned, Scanned, and Free, as in Baker's algorithm. To be specific, the Unscanned list is managed as a queue, and when more than one object is to be placed on this list due to the scanning of one object, we do so in alphabetical order. Suppose also that we use write barriers to assure that no reachable object is made garbage. Starting with A and B on the Unscanned list, suppose the following events occur:
+
+A is scanned.
+The pointer A -> D is rewritten to be A -> H.
+B is scanned.
+D is scanned.
+The pointer B -> C is rewritten to be B -> I.
+Simulate the entire incremental garbage collection, assuming no more pointers are rewritten. Which objects are garbage? Which objects are placed on the Free list?
+
+
+0. init
+ Free = []
+ Unreached = [C, D, E, F, G, H, I]
+ Uscanned = [A, B]
+ Scanned = []
+
+1. A is scanned.
+ Unreached = [C, F, G, H, I]
+ Uscanned = [B, D, E]
+ Scanned = [A]
+
+2. The pointer A -> D is rewritten to be A -> H.
+
+ Unreached = [C, F, G, I]
+ Uscanned = [B, D, E, H]
+ Scanned = [A]
+
+3. B is scanned.
+
+ Unreached = [F, G, I]
+ Uscanned = [D, E, H, C]
+ Scanned = [A, B]
+
+4. D is scanned.
+
+ Unreached = [F, G, I]
+ Uscanned = [E, H, C]
+ Scanned = [A, B, D]
+
+5. The pointer B -> C is rewritten to be B -> I.
+
+ Unreached = [F, G]
+ Uscanned = [E, H, C, I]
+ Scanned = [A, B, D]
+
+6. E is scanned.
+
+ Unreached = [F, G]
+ Uscanned = [H, C, I]
+ Scanned = [A, B, D, E]
+
+7. H is scanned.
+
+ Unreached = [F, G]
+ Uscanned = [C, I]
+ Scanned = [A, B, D, E, H]
+
+8. C is scanned.
+
+ Unreached = [F, G]
+ Uscanned = [I]
+ Scanned = [A, B, D, E, H, C]
+
+9. I is scanned.
+
+Unreached = [F, G]
+Uscanned = []
+Scanned = [A, B, D, E, H, C, I]
+
+10. end
+
+Free = [F, G]
+Unreached = [A, B, D, E, H, C, I]
+Unscanned = []
+Scanned = []
+
+so, [C, D, F, G] is garbage, Free list is [F, G].
+
