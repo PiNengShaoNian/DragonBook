@@ -1,0 +1,83 @@
+Figure 8.11 is code to count the number of primes from 2 to n, using the sieve method on a suitably large array a. That is, a[i] is TRUE at the end only if there is no prime i^0.5 or less that evenly divides i. We initialize all a[i] to TRUE and then set a[j] to FALSE if we find a divisor of j.
+
+for (i=2; i<=n; i++)
+    a[i] = TRUE;
+count = 0;
+s = sqrt(n);
+for (i=2; i<=s; i++)
+if (a[i]) 1* i has been found to be a prime *1 {
+    count++ ;
+    for (j=2*i; j<=n; j = j+i)
+        a[j] = FALSE; 1* no multiple of i is a prime *1
+    }
+
+1. Translate the program into three-address statements of the type we have been using in this section. Assume integers require 4 bytes.
+
+1)  i = 2
+2)  if i > n goto(6)
+3)  t1 = i * 4
+4)  a[t1] = TRUE
+5)  i = i + 1
+6)  goto(2)
+7)  count = 0
+8)  s = sqrt(n)
+9)  i = 2
+10) if i > s goto(22)
+11) t2 = i * 4 
+12) ifFalse a[t2] goto(20)
+13) count = count + 1
+14) j = 2 * i
+15) if j > n goto(20)
+16) t3 = j * 4
+17) a[t3] = FALSE
+18) j = j + i
+19) goto(15)
+20) i = i + 1
+21) goto(10) 
+
+
+2. Construct the flow graph for your code from (a).
+
+B1: 
+1)  i = 2
+
+B2:
+2)  if i > n goto(7)
+
+B3:
+3)  t1 = i * 4
+4)  a[t1] = TRUE
+5)  i = i + 1
+6)  goto(2)
+
+B4:
+7)  count = 0
+8)  s = sqrt(n)
+9)  i = 2
+
+B5:
+10) if i > s goto(22)
+
+B6:
+11) t2 = i * 4 
+12) ifFalse a[t2] goto(20)
+
+B7:
+13) count = count + 1
+14) j = 2 * i
+
+B8:
+15) if j > n goto(20)
+
+B9:
+16) t3 = j * 4
+17) a[t3] = FALSE
+18) j = j + i
+19) goto(15)
+
+B10:
+20) i = i + 1
+21) goto(10) 
+
+
+3. Identify the loops in your flow graph from (b).
