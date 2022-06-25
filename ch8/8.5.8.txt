@@ -1,0 +1,25 @@
+Suppose a basic block is formed from the C assignment statements
+
+x = a + b + c + d + e + f;
+y = a + c + e;
+
+1. Give the three-address statements (only one addition per statement) for this block.
+t1 = a + b
+t2 = t1 + c
+t3 = t2 + d
+t4 = t3 + e
+t5 = t4 + f
+x = t5
+t6 = a + c
+t7 = c + e
+y = t6 + t7
+
+2. optimized statments
+t1 = a + c
+t2 = t1 + e
+y = t2
+t3 = t2 + b
+t4 = t3 + d
+t5 = t4 + f
+x = t5
+

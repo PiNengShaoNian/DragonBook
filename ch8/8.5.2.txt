@@ -1,0 +1,12 @@
+Simplify the three-address code of Exercise 8.5.1, assuming
+
+1. Only a is live on exit from the block.
+e = a + b
+d = b * c
+a = e - d
+
+2. a, b, and c are live on exit from the block.
+
+e = a + b
+b = b * c
+a = e - b

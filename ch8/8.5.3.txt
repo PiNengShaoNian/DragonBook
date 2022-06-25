@@ -1,0 +1,19 @@
+Construct the basic block for the code in block B6 of Fig. 8.9. Do not forget to include the comparison i <= 10.
+
+             []=
+              |
+        ---------------
+        |     |       |
+        a     * t6   1.0
+              |
+          ----------                             <=
+          |        |                             |
+          88       -                   ----------------------
+                   |                   |         |          |
+                --------               + i      10          B6
+                |      |               |
+                i0     1           ----------
+                ^      ^           |        |
+                |      |           |        |
+                |      ------------|--------- 
+                --------------------
