@@ -1,0 +1,52 @@
+Determine the costs of the following instruction sequences:
+
+1.  LD R0, y
+    LD R1, z
+    ADD R0, R0, R1
+    ST x, R0
+
+answer
+2 + 2 + 1 + 2 = 7
+
+
+2.  LD R0, i
+    MUL R0, R0, 8
+    LD R1, a(R0)
+    ST b, R1
+
+answer
+2 + 2 + 2 + 2 = 7
+
+
+3.  LD R0, c
+    LD R1, i
+    MUL R1, R1, 8
+    ST a(R1),R0
+
+answer
+2 + 2 + 2 + 2 = 8
+
+
+4.  LD R0, p
+    LD R1, 0(R0)
+    ST x, R1
+
+answer
+2 + 2 + 2 = 6
+
+
+5.  LD R0, p
+    LD R1, x
+    ST 0(R0), R1
+
+answer
+2 + 2 + 2 = 6
+
+
+6.  LD R0, x
+    LD R1, y
+    SUB R0, R0, R1
+    BLTZ *R3, R0
+
+answer
+2 + 2 + 1 + 1 = 6

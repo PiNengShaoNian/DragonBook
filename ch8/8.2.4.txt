@@ -1,0 +1,17 @@
+Generate code for the following sequence assuming that x, y, and z are in memory locations:
+
+    if x < y goto L1
+    z = 0
+    goto L2
+L1: z = 1
+
+    LD R0,x
+    LD R1,y
+    SUB R0,R0,R1
+    BLTZ R0,L1
+    LD R0,#0
+    ST z,R0
+    BR L2
+
+L1: LD R0,#1
+    ST z,R0

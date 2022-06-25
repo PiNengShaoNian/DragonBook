@@ -1,0 +1,23 @@
+Generate code for the following sequence assuming that n is in a memory location:
+
+    s = 0
+    i = 0
+L1: if i > n goto L2
+    s = s + i
+    i = i + 1
+    goto L1
+L2:
+
+    LD R0,#0        # R0 = s = 0
+    ST s,R0
+    LD R1,#0        # R1 = i = 0
+    ST i,R1
+    LD R2,n         # R2 = n
+L1: SUB R3,R2,R1     # R3 = R2 - R1 = n - i
+    BLTZ R3 L2      # if i > n goto L2
+    ADD R0,R0,R1    # R0 = R0 + R1 = s + i  ===> s = s + i
+    ST s,R0
+    ADD R1,R1,#1    # R1 = R1 + 1 = i + 1 ===> i = i + 1
+    ST i,R1
+    BR L1 
+L2:
