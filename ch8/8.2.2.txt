@@ -1,0 +1,42 @@
+Generate code for the following three-address statements assuming a and b are arrays whose elements are 4-byte values.
+
+1. The four-statement sequence
+ x = a[i]
+ y = b[j]
+ a[i] = y
+ b[j] = x
+
+LD R0,i          # R0 = i
+MUL R0,R0,#4     # R0 = i * 4
+LD R1,a(R0)      # R1 = *(a + R0)
+LD R2,j          # R2 = j
+MUL R2,R2,#4     # R2 = j * 4
+LD R3,b(R2)      # R3 = *(b + R2)
+ST a(R0),R3
+ST b(R2),R1
+
+
+2. The three-statement sequence
+ x = a[i]
+ y = b[i]
+ z = x * y
+
+LD R0,i          # R0 = i
+MUL R0,R0,#4     # R0 = i * 4
+LD R1,a(R0)      # R1 = *(a + R0)
+LD R2,b(R0)      # R2 = *(b + R0)
+MUL R1,R1,R2
+ST z,R1
+
+3. The three-statement sequence
+ x = a[i]
+ y = b[x]
+ a[i] = y
+
+LD R0,i          # R0 = i
+MUL R0,R0,#4     # R0 = i * 4
+LD R1,a(R0)      # R1 = *(a + R0)
+ST x,R1          # x = R1
+LD R2,b(R1)      # R2 = *(b + R1)
+ST y,R2
+ST a(R0),R2

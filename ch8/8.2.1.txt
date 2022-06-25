@@ -1,0 +1,38 @@
+Generate code for the following three-address statements assuming all variables are stored in memory locations.
+
+1) x = 1
+
+LD R0,#1
+ST x,R0
+
+2) x = a
+
+LD R0,a
+ST x,R0
+
+
+3) x = a + 1
+LD R0,a
+ADD R0,R0,#1
+ST x,R0
+
+
+4) 
+x = b * c
+y = a + x
+
+LD R0,a
+LD R1,b
+ADD R0,R0,R1
+ST x,R0
+
+5) The two statements
+x = b * c
+y = a + x
+
+LD R1,b
+LD R0,c
+MUL R0,R0,R1
+LD R2,a
+ADD R0,R0,R2
+ST y,R0

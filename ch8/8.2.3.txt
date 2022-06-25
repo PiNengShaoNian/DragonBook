@@ -1,0 +1,15 @@
+Generate code for the following three-address sequence assuming that p and q are in memory locations:
+
+y = *q
+q = q + 4
+*p = y
+p = p + 4
+
+LD R0,q           # R0 = q 
+LD R1,0(R0)       # R1 = *R0 = *q
+ADD R0,R0,#4      # R0 = R0 + 4 = q + 4
+ST q,R0           # q = R0 = q + 4
+LD R0,p           # R0 = p
+ST 0(R0),R1       # *(R0) = *q  ===> *p = y
+ADD R0,R0,#4      # R0 = R0 + 4 = p + 4
+ST p,R0
