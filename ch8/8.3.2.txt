@@ -1,0 +1,4 @@
+Generate code for the following three-address statements assuming stack allocation where register SP points to the top of the stack.
+
+1. x = 1
+LD 1(SP),1
