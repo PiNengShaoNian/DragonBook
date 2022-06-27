@@ -1,0 +1,61 @@
+假设有任意多个寄存器可用，为练习8.6.1生成机器代码
+1) x = a + b * c;
+t1 = b * c
+t2 = a + t1
+x = t2
+
+LD R0,c
+LD R1,b
+ADD R0,R0,R1
+LD R1,a
+ADD R0,R0,R1
+LD x,R0
+
+
+2) x = a / (b + c) - d * (e + f)
+t1 = b + c
+t2 = a / t1
+t3 = e + f
+t4 = d * t3
+t5 = t2 - t4
+x = t5
+
+LD R0,b
+LD R1,c
+ADD R0,R0,R1
+LD R1,a
+DIV R0,R1,R0
+LD R1,e
+LD R2,f
+ADD R1,R1,R2
+LD R2,d
+MUL R1,R1,R2
+DIV R0,R0,R1
+ST x,R0
+
+
+3) x = a[i] + 1
+t1 = i * 4
+t2 = a + t1
+t3 =[] t2
+t4 = t3 + 1
+x = t4
+
+LD R0,i
+MUL R0,R0,#4
+LD R1,a
+ADD R0,R0,R1
+LD R1,0(R0)
+ADD R0,R1,#1
+ST x,R0
+
+4) a[i] = b[c[i]]
+t1 = 4 * i
+t2 = c + t1
+t3 =[] t2
+t4 = b + t3
+t5 =[] t4
+t6 = 4 * i
+t7 = a + t6
+t7 []= t5
+
